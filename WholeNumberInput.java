@@ -4,7 +4,7 @@ public class WholeNumberInput
 {
 	public static void main(String[] args) 
 	{
-	    int[] vec = {20,45,76,1,34,567,423,6,3,5};
+	    int[] vector = {20,45,76,1,34,567,423,6,3,5};
 	    Scanner input = new Scanner(System.in);
 		int index;
 		boolean continueCycle = true;
@@ -12,7 +12,7 @@ public class WholeNumberInput
 		try{
 		    System.out.print("Input a value between 0 and 9 ");
 		    index = input.nextInt();
-		    System.out.print ("In the index " + index + " the value stored is " + vec[index]);
+		    System.out.print ("In the index " + index + " the value stored is " + vector[index]);
 		    continueCycle = false;
 		}
 		catch(InputMismatchException ex){
@@ -25,3 +25,4 @@ public class WholeNumberInput
 		}while (continueCycle);
 	}
 }
+
