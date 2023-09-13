@@ -102,5 +102,9 @@ public class Main extends Exception
     		}
 		}while (continueCycle);
 		
+		//Calculation
+		Date date = new GregorianCalendar(yearOfBirth, monthOfBirth-1, dayOfBirth).getTime();
+		System.out.println(date);
 	}
 }
+
