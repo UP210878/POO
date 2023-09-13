@@ -41,6 +41,7 @@ public class Main extends Exception
 		        {
 		            if(yearOfBirth % 4 == 0 || yearOfBirth % 400 == 0){
 		                leapYear = true;
+		                daysInMonth[1] = 29; 
 		            }
 		            continueCycle = false;
 		            
