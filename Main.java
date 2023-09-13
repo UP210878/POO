@@ -15,16 +15,18 @@ public class Main extends Exception
 	@Override
 	public String getMessage()
 	{
-	    return "MyException: Exception code " + errorText;
+	    return "MyException: Exception type: " + errorText;
 	}
 	
 	
 	public static void main(String[] args) {
 	    int[] daysInMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
 		Scanner input = new Scanner(System.in);
-		int yearOfBirth;
+		int yearOfBirth=1;
 		boolean continueCycle = true;
 		boolean leapYear = false;
+		int monthOfBirth=1;
+		int dayOfBirth=1;
 		//Year Input
 		do{
 		    LocalDate current_date = LocalDate.now();
@@ -39,7 +41,6 @@ public class Main extends Exception
 		        {
 		            if(yearOfBirth % 4 == 0 || yearOfBirth % 400 == 0){
 		                leapYear = true;
-		                System.out.println("Is a leap year");
 		            }
 		            continueCycle = false;
 		            
@@ -55,21 +56,19 @@ public class Main extends Exception
     		}
 		}while (continueCycle);
 		//Month input
+		continueCycle = true;
 		do{
-		    LocalDate current_date = LocalDate.now();
-            int current_Year = current_date.getYear();
 		    try {
     		    System.out.print("Input the month of birth (MM)");
-    		    yearOfBirth = input.nextInt();
-    		    if (yearOfBirth > current_Year){
-    		        throw new Main("Value must be before current year");
+    		    monthOfBirth = input.nextInt();
+    		    if (monthOfBirth > 12 || monthOfBirth <= 0){
+    		        throw new Main("Value must be between 1 and 12");
 		    }
 		    else
 		        {
 		            continueCycle = false;
 		        }
 		    }
-		    
     		catch(InputMismatchException ex){
     		    System.out.println("The value must be an integer");
     		    input.nextLine();
@@ -79,5 +78,28 @@ public class Main extends Exception
     		}
 		}while (continueCycle);
 		//Day input
+		continueCycle = true;
+		int maximumDaysInMonth = daysInMonth[monthOfBirth-1];
+		do{
+		    try {
+    		    System.out.print("Input the day of birth (DD)");
+    		    dayOfBirth = input.nextInt();
+    		    if (dayOfBirth > maximumDaysInMonth || dayOfBirth <= 0){
+    		        throw new Main("Value must be between a valid day between 0 and " + maximumDaysInMonth);
+		    }
+		    else
+		        {
+		            continueCycle = false;
+		        }
+		    }
+    		catch(InputMismatchException ex){
+    		    System.out.println("The value must be an integer");
+    		    input.nextLine();
+    		}
+    		catch(Main ex){
+    		    System.out.println(ex.getMessage());
+    		}
+		}while (continueCycle);
+		
 	}
 }
