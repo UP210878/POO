@@ -1,5 +1,3 @@
-//ENTRADA DEL SISTEMA: Pedir a usuario Año, Mes, Dia de Nacimiento
-//SALIDA DEL SISTEMA: Edad en formato: "La persona tiene (x) años, (y) meses y (z) dias de edad"
 import java.util.*;
 import java.time.LocalDate;
 
@@ -24,23 +22,26 @@ public class Main extends Exception
 		Scanner input = new Scanner(System.in);
 		int yearOfBirth=1;
 		boolean continueCycle = true;
-		boolean leapYear = false;
+        LocalDate currentDate = LocalDate.now();
+		int currentMonth=currentDate.getMonthValue();
+		int currentDay=currentDate.getDayOfMonth();
+        int currentYear = currentDate.getYear();
 		int monthOfBirth=1;
 		int dayOfBirth=1;
+        int ageInMonth=0;
+        int ageInDays=0;
+        int ageInYears=0;
 		//Year Input
 		do{
-		    LocalDate current_date = LocalDate.now();
-            int current_Year = current_date.getYear();
 		    try {
     		    System.out.print("Input the year of birth (YYYY)");
     		    yearOfBirth = input.nextInt();
-    		    if (yearOfBirth > current_Year){
+    		    if (yearOfBirth > currentYear){
     		        throw new Main("Value must be before current year");
 		    }
 		    else
 		        {
 		            if(yearOfBirth % 4 == 0 || yearOfBirth % 400 == 0){
-		                leapYear = true;
 		                daysInMonth[1] = 29; 
 		            }
 		            continueCycle = false;
@@ -102,9 +103,25 @@ public class Main extends Exception
     		}
 		}while (continueCycle);
 		
-		//Calculation
-		Date date = new GregorianCalendar(yearOfBirth, monthOfBirth-1, dayOfBirth).getTime();
-		System.out.println(date);
+        ageInYears = currentYear - yearOfBirth;
+        if (monthOfBirth == currentMonth){
+            if (dayOfBirth>currentDay) {
+                ageInYears = ageInYears - 1;
+            }
+        }
+        if (monthOfBirth > currentMonth){
+            ageInYears = ageInYears - 1;
+            ageInMonth = 12+(currentMonth - monthOfBirth);
+        }else if (monthOfBirth <= currentMonth){
+            ageInMonth = currentMonth - monthOfBirth;            
+        }
+
+        if (dayOfBirth <= currentDay){
+            ageInDays = currentDay - dayOfBirth;
+        } else if(dayOfBirth > currentDay){
+            ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay)+1;
+        }
+		System.out.println("Days: " + ageInDays + "\nMonth: "+ ageInMonth + "\nYear:" + ageInYears);
+        input.close();
 	}
 }
-
