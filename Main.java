@@ -104,28 +104,55 @@ public class Main extends Exception
 		}while (continueCycle);
 		
         ageInYears = currentYear - yearOfBirth;
-        if (monthOfBirth == currentMonth){
-			ageInMonth = 11;
-            if (dayOfBirth>currentDay) {
-                ageInYears = ageInYears - 1;
-            }
-        }
+		if (monthOfBirth > currentMonth){
+			ageInYears = ageInYears -1;
+			ageInMonth = 12 + (currentMonth - monthOfBirth);
+		}
+		else if (monthOfBirth < currentMonth) {
+			ageInMonth = currentMonth - monthOfBirth;
+		}
+		if (dayOfBirth > currentDay){
+			ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
+			ageInMonth = ageInMonth-1;
+		} else if (dayOfBirth <= currentDay){
+			ageInDays = currentDay - dayOfBirth;
+		}
+		if (monthOfBirth==currentMonth) {
+			if (dayOfBirth>currentDay) {
+				ageInMonth = 11;
+				ageInYears = ageInYears-1;
+			}
+			else if (dayOfBirth<=currentDay) {
+				ageInMonth = 0;
+			}
+		}
+		/*if (monthOfBirth == currentMonth){
+			if (dayOfBirth>currentDay) {
+				ageInYears = ageInYears - 1;
+				ageInMonth = 11+(currentMonth - monthOfBirth);
+			} else if (dayOfBirth<=currentDay) {
+				ageInMonth = currentMonth - monthOfBirth;
+			}
+		}
         if (monthOfBirth > currentMonth){
             ageInYears = ageInYears - 1;
-            ageInMonth = 11+(currentMonth - monthOfBirth);
+			if (dayOfBirth < currentDay){
+				ageInMonth = 12+(currentMonth - monthOfBirth);
+				ageInDays = currentDay - dayOfBirth;
+			} else if (dayOfBirth >= currentDay) {
+				ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
+				ageInMonth = 11+(currentMonth - monthOfBirth);
+			}
         }else if (monthOfBirth < currentMonth){
 			if (dayOfBirth < currentDay) {
+				ageInDays = currentDay - dayOfBirth;
 				ageInMonth = currentMonth - monthOfBirth;            
 			} else if (dayOfBirth > currentDay) {
+				ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
 				ageInMonth = currentMonth - monthOfBirth - 1;
 			}
-        }
+        }*/
 
-        if (dayOfBirth <= currentDay){
-            ageInDays = currentDay - dayOfBirth;
-        } else if(dayOfBirth > currentDay){
-            ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay)+1;
-        }
 		System.out.println("Days: " + ageInDays + "\nMonth: "+ ageInMonth + "\nYear:" + ageInYears);
         input.close();
 	}
