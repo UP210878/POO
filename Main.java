@@ -65,7 +65,9 @@ public class Main extends Exception
     		    monthOfBirth = input.nextInt();
     		    if (monthOfBirth > 12 || monthOfBirth <= 0){
     		        throw new Main("Value must be between 1 and 12");
-		    }
+		    }else if (monthOfBirth>currentMonth && yearOfBirth == currentYear){
+		        throw new Main("Value can't be above current month while the year of birth is the same as the current year");
+		    }  
 		    else
 		        {
 		            continueCycle = false;
