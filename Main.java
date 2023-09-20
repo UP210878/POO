@@ -126,33 +126,6 @@ public class Main extends Exception
 				ageInMonth = 0;
 			}
 		}
-		/*if (monthOfBirth == currentMonth){
-			if (dayOfBirth>currentDay) {
-				ageInYears = ageInYears - 1;
-				ageInMonth = 11+(currentMonth - monthOfBirth);
-			} else if (dayOfBirth<=currentDay) {
-				ageInMonth = currentMonth - monthOfBirth;
-			}
-		}
-        if (monthOfBirth > currentMonth){
-            ageInYears = ageInYears - 1;
-			if (dayOfBirth < currentDay){
-				ageInMonth = 12+(currentMonth - monthOfBirth);
-				ageInDays = currentDay - dayOfBirth;
-			} else if (dayOfBirth >= currentDay) {
-				ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
-				ageInMonth = 11+(currentMonth - monthOfBirth);
-			}
-        }else if (monthOfBirth < currentMonth){
-			if (dayOfBirth < currentDay) {
-				ageInDays = currentDay - dayOfBirth;
-				ageInMonth = currentMonth - monthOfBirth;            
-			} else if (dayOfBirth > currentDay) {
-				ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
-				ageInMonth = currentMonth - monthOfBirth - 1;
-			}
-        }*/
-
 		System.out.println("Days: " + ageInDays + "\nMonth: "+ ageInMonth + "\nYear:" + ageInYears);
         input.close();
 	}
