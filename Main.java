@@ -105,15 +105,20 @@ public class Main extends Exception
 		
         ageInYears = currentYear - yearOfBirth;
         if (monthOfBirth == currentMonth){
+			ageInMonth = 11;
             if (dayOfBirth>currentDay) {
                 ageInYears = ageInYears - 1;
             }
         }
         if (monthOfBirth > currentMonth){
             ageInYears = ageInYears - 1;
-            ageInMonth = 12+(currentMonth - monthOfBirth);
-        }else if (monthOfBirth <= currentMonth){
-            ageInMonth = currentMonth - monthOfBirth;            
+            ageInMonth = 11+(currentMonth - monthOfBirth);
+        }else if (monthOfBirth < currentMonth){
+			if (dayOfBirth < currentDay) {
+				ageInMonth = currentMonth - monthOfBirth;            
+			} else if (dayOfBirth > currentDay) {
+				ageInMonth = currentMonth - monthOfBirth - 1;
+			}
         }
 
         if (dayOfBirth <= currentDay){
