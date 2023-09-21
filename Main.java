@@ -41,7 +41,7 @@ public class Main extends Exception
 		    }
 		    else
 		        {
-		            if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0){
+		            if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0 || yearOfBirth % 400 == 0){
 		                daysInMonth[1] = 29; 
 		            }
 		            continueCycle = false;
@@ -123,6 +123,9 @@ public class Main extends Exception
 		if (dayOfBirth > currentDay){
 			ageInDays = maximumDaysInPreviousMonth - (dayOfBirth - currentDay);
 			ageInMonth = ageInMonth-1;
+			if(monthOfBirth==2){
+			    ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay) -1;
+			}
 		} else if (dayOfBirth <= currentDay){
 			ageInDays = currentDay - dayOfBirth;
 		}
@@ -134,6 +137,9 @@ public class Main extends Exception
 			else if (dayOfBirth<=currentDay) {
 				ageInMonth = 0;
 			}
+		}
+		if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0 || yearOfBirth % 400 == 0 || currentMonth>2){
+		    ageInDays = ageInDays + 1;
 		}
 		System.out.println("Days: " + ageInDays + "\nMonth: "+ ageInMonth + "\nYear:" + ageInYears);
         input.close();
