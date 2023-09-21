@@ -41,7 +41,7 @@ public class Main extends Exception
 		    }
 		    else
 		        {
-		            if(yearOfBirth % 4 == 0 || yearOfBirth % 400 == 0){
+		            if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0){
 		                daysInMonth[1] = 29; 
 		            }
 		            continueCycle = false;
@@ -84,6 +84,13 @@ public class Main extends Exception
 		//Day input
 		continueCycle = true;
 		int maximumDaysInMonth = daysInMonth[monthOfBirth-1];
+		int maximumDaysInPreviousMonth = 1;
+		if (monthOfBirth>=2){
+		    maximumDaysInPreviousMonth = daysInMonth[monthOfBirth-2];
+		}else {
+		    maximumDaysInPreviousMonth = daysInMonth[11];
+		}
+		
 		do{
 		    try {
     		    System.out.print("Input the day of birth (DD)");
@@ -114,7 +121,7 @@ public class Main extends Exception
 			ageInMonth = currentMonth - monthOfBirth;
 		}
 		if (dayOfBirth > currentDay){
-			ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay);
+			ageInDays = maximumDaysInPreviousMonth - (dayOfBirth - currentDay);
 			ageInMonth = ageInMonth-1;
 		} else if (dayOfBirth <= currentDay){
 			ageInDays = currentDay - dayOfBirth;
