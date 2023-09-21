@@ -31,6 +31,7 @@ public class Main extends Exception
         int ageInMonth=0;
         int ageInDays=0;
         int ageInYears=0;
+        boolean currentLeapYear = false;
 		//Year Input
 		do{
 		    try {
@@ -43,6 +44,7 @@ public class Main extends Exception
 		        {
 		            if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0 || yearOfBirth % 400 == 0){
 		                daysInMonth[1] = 29; 
+		                currentLeapYear = true;
 		            }
 		            continueCycle = false;
 		            
@@ -123,9 +125,6 @@ public class Main extends Exception
 		if (dayOfBirth > currentDay){
 			ageInDays = maximumDaysInPreviousMonth - (dayOfBirth - currentDay);
 			ageInMonth = ageInMonth-1;
-			if(monthOfBirth==2){
-			    ageInDays = maximumDaysInMonth - (dayOfBirth - currentDay) -1;
-			}
 		} else if (dayOfBirth <= currentDay){
 			ageInDays = currentDay - dayOfBirth;
 		}
