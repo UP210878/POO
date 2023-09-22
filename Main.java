@@ -87,8 +87,8 @@ public class Main extends Exception
 		continueCycle = true;
 		int maximumDaysInMonth = daysInMonth[monthOfBirth-1];
 		int maximumDaysInPreviousMonth = 1;
-		if (monthOfBirth>=2){
-		    maximumDaysInPreviousMonth = daysInMonth[monthOfBirth-2];
+		if (currentMonth>=2){
+		    maximumDaysInPreviousMonth = daysInMonth[currentMonth-2];
 		}else {
 		    maximumDaysInPreviousMonth = daysInMonth[11];
 		}
@@ -136,9 +136,6 @@ public class Main extends Exception
 			else if (dayOfBirth<=currentDay) {
 				ageInMonth = 0;
 			}
-		}
-		if(yearOfBirth % 4 == 0 && yearOfBirth % 100 != 0 || yearOfBirth % 400 == 0 || currentMonth>2){
-		    ageInDays = ageInDays + 1;
 		}
 		System.out.println("Days: " + ageInDays + "\nMonth: "+ ageInMonth + "\nYear:" + ageInYears);
         input.close();
